@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ningning Wang | Academic Homepage</title>
+  <meta name="description" content="Ningning Wang's personal academic homepage." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="container">
+    <span class="nav-name" id="nav-name"></span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#publications">Publications</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Profile -->
+<section class="profile" id="about">
+  <div class="container">
+    <div class="profile-inner">
+      <div class="profile-photo-wrapper">
+        <img class="profile-photo" id="profile-photo" src="" alt="Profile photo" />
+      </div>
+      <div class="profile-info">
+        <h1 id="profile-name"></h1>
+        <p class="profile-subtitle" id="profile-subtitle"></p>
+        <div class="social-links" id="social-links"></div>
+        <p class="profile-bio" id="profile-bio"></p>
+        <div>
+          <span style="font-weight:600;font-size:14px;color:var(--text-primary);margin-right:8px;">Research Interests</span>
+          <div class="research-interests" id="research-interests" style="margin-top:8px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Academic Journey -->
+<section class="section" id="journey">
+  <div class="container">
+    <h2 class="section-title">Academic Journey</h2>
+    <div class="timeline" id="timeline"></div>
+  </div>
+</section>
+
+<!-- News -->
+<section class="section" id="news">
+  <div class="container">
+    <h2 class="section-title">News</h2>
+    <ul class="news-list" id="news-list"></ul>
+  </div>
+</section>
+
+<!-- Publications -->
+<section class="section" id="publications">
+  <div class="container">
+    <h2 class="section-title">Selected Publications</h2>
+    <div class="pub-list" id="pub-list"></div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p id="footer-text"></p>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+(function () {
+  const d = siteData;
+
+  document.getElementById("nav-name").textContent = d.profile.name;
+  document.getElementById("profile-photo").src = d.profile.photo;
+  document.getElementById("profile-photo").alt = d.profile.name;
+  document.getElementById("profile-name").textContent = d.profile.name;
+  document.getElementById("profile-subtitle").textContent =
+    d.profile.title + " at " + d.profile.affiliation;
+  document.getElementById("profile-bio").innerHTML = d.profile.bio;
+
+  const socialEl = document.getElementById("social-links");
+  d.socialLinks.forEach((s) => {
+    const a = document.createElement("a");
+    a.className = "social-link";
+    a.href = s.url;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.title = s.name;
+    const img = document.createElement("img");
+    img.src = s.icon;
+    img.alt = s.name;
+    a.appendChild(img);
+    socialEl.appendChild(a);
+  });
+
+  const interestsEl = document.getElementById("research-interests");
+  d.researchInterests.forEach((r) => {
+    const span = document.createElement("span");
+    span.className = "interest-tag";
+    span.textContent = r;
+    interestsEl.appendChild(span);
+  });
+
+  const timelineEl = document.getElementById("timeline");
+  d.academicJourney.forEach((j) => {
+    const item = document.createElement("div");
+    item.className = "timeline-item";
+    item.innerHTML = `
+      <div class="timeline-institution">${j.institution}</div>
+      <div class="timeline-degree">${j.degree}</div>
+      <div class="timeline-meta">
+        <span class="timeline-period">${j.period}</span>
+        ${j.status ? `<span class="timeline-status">${j.status}</span>` : ""}
+      </div>
+    `;
+    timelineEl.appendChild(item);
+  });
+
+  const newsEl = document.getElementById("news-list");
+  if (d.news.length === 0) {
+    newsEl.innerHTML =
+      '<div class="empty-placeholder">News will be updated here. Stay tuned!</div>';
+  } else {
+    d.news.forEach((n) => {
+      const li = document.createElement("li");
+      li.className = "news-item";
+      li.innerHTML = `
+        <span class="news-date">${n.date}</span>
+        <span class="news-content">${n.content}</span>
+      `;
+      newsEl.appendChild(li);
+    });
+  }
+
+  const pubEl = document.getElementById("pub-list");
+  if (d.publications.length === 0) {
+    pubEl.innerHTML =
+      '<div class="empty-placeholder">Publications will be listed here.</div>';
+  } else {
+    d.publications.forEach((p) => {
+      const div = document.createElement("div");
+      div.className = "pub-item";
+
+      const badges = [
+        p.venueShort
+          ? `<span class="pub-venue-badge">${p.venueShort}</span>`
+          : "",
+        p.highlight
+          ? `<span class="pub-highlight">${p.highlight}</span>`
+          : "",
+      ]
+        .filter(Boolean)
+        .join("");
+
+      const tags = (p.tags || [])
+        .map((t) => `<span class="pub-tag">${t}</span>`)
+        .join("");
+
+      const links = (p.links || [])
+        .map(
+          (l) =>
+            `<a class="pub-link" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`
+        )
+        .join("");
+
+      const authorsHtml = (p.authors || "").replace(
+        /Ningning Wang/g,
+        '<span class="self">Ningning Wang</span>'
+      );
+
+      div.innerHTML = `
+        <div class="pub-header">
+          <div>${badges}</div>
+          <div class="pub-tags">${tags}</div>
+        </div>
+        <div class="pub-title">${p.title}</div>
+        <div class="pub-authors">${authorsHtml}</div>
+        <div class="pub-venue-text">${p.venue}</div>
+        <div class="pub-links">${links}</div>
+      `;
+      pubEl.appendChild(div);
+    });
+  }
+
+  document.getElementById("footer-text").textContent = d.footer.text;
+})();
+</script>
+
+</body>
+</html>
