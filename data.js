@@ -66,7 +66,7 @@ const siteData = {
       venue: "arxiv:2508.02694",
       venueShort: "arxiv",
       highlight: "",
-      tags: ["VLM"],
+      tags: ["Agent"],
       image: "figures/papers/efficient_agents.png",   // 160×100 thumbnail; replace with paper figure
       links: [
         { label: "ARXIV", url: "https://arxiv.org/abs/2508.02694" },
