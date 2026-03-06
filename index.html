@@ -36,11 +36,13 @@
         <h1 id="profile-name"></h1>
         <p class="profile-subtitle" id="profile-subtitle"></p>
         <div class="social-links" id="social-links"></div>
-        <p class="profile-bio" id="profile-bio"></p>
-        <div>
-          <span style="font-weight:600;font-size:14px;color:var(--text-primary);margin-right:8px;">Research Interests</span>
-          <div class="research-interests" id="research-interests" style="margin-top:8px;"></div>
-        </div>
+      </div>
+    </div>
+    <div class="profile-full">
+      <p class="profile-bio" id="profile-bio"></p>
+      <div class="profile-interests">
+        <span class="profile-interests-label">Research Interests</span>
+        <div class="research-interests" id="research-interests"></div>
       </div>
     </div>
   </div>
@@ -180,15 +182,22 @@
         '<span class="self">Ningning Wang</span>'
       );
 
+      const thumbHtml = p.image
+        ? `<img class="pub-thumb" src="${p.image}" alt="${p.title}" />`
+        : `<div class="pub-thumb"></div>`;
+
       div.innerHTML = `
-        <div class="pub-header">
-          <div>${badges}</div>
-          <div class="pub-tags">${tags}</div>
+        ${thumbHtml}
+        <div class="pub-body">
+          <div class="pub-header">
+            <div>${badges}</div>
+            <div class="pub-tags">${tags}</div>
+          </div>
+          <div class="pub-title">${p.title}</div>
+          <div class="pub-authors">${authorsHtml}</div>
+          <div class="pub-venue-text">${p.venue}</div>
+          <div class="pub-links">${links}</div>
         </div>
-        <div class="pub-title">${p.title}</div>
-        <div class="pub-authors">${authorsHtml}</div>
-        <div class="pub-venue-text">${p.venue}</div>
-        <div class="pub-links">${links}</div>
       `;
       pubEl.appendChild(div);
     });

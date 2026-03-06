@@ -59,17 +59,30 @@ const siteData = {
   ],
 
   publications: [
-    // Add publications here. Example:
+    // ── Example (remove or replace with your real papers) ──
+    {
+      title: "Example: Towards Robust Visual Understanding via Multi-modal Alignment",
+      authors: "Ningning Wang, Coauthor A, Coauthor B",
+      venue: "In Proceedings of Example Conference, 2026",
+      venueShort: "EXAMPLE",
+      highlight: "",
+      tags: ["VLM"],
+      image: "figures/photo.jpg",   // 160×100 thumbnail; replace with paper figure
+      links: [
+        { label: "ARXIV", url: "#" },
+        { label: "CODE", url: "#" },
+      ],
+    },
+    // To add more papers, copy the block above and fill in your data.
     // {
-    //   title: "Paper Title Here",
-    //   authors: "Ningning Wang, Coauthor Name",
-    //   venue: "Conference or Journal Name, Year",
+    //   title: "Paper Title",
+    //   authors: "Ningning Wang, ...",
+    //   venue: "Conference / Journal, Year",
     //   venueShort: "CONF",
-    //   highlight: "",          // e.g. "Oral", "Spotlight", "Best Paper"
-    //   tags: ["VLM"],          // topic tags
+    //   highlight: "Oral",          // or "" if none
+    //   tags: ["RL"],
+    //   image: "figures/paper2.png", // put your thumbnail in figures/
     //   links: [
-    //     { label: "ARXIV", url: "#" },
-    //     { label: "CODE", url: "#" },
     //     { label: "PDF", url: "#" },
     //   ],
     // },
