@@ -55,23 +55,22 @@ const siteData = {
 
   news: [
     // Add news items here. Example:
-    { date: "December 2025", content: "Admitted to USTC Master's Program(expect 26 Fall)!" },
-
+    { date: "Dec. 2025", content: "Admitted to USTC Master's Program(expect 26 Fall)!" },
   ],
 
   publications: [
     // ── Example (remove or replace with your real papers) ──
     {
-      title: "Example: Towards Robust Visual Understanding via Multi-modal Alignment",
-      authors: "Ningning Wang, Coauthor A, Coauthor B",
-      venue: "In Proceedings of Example Conference, 2026",
-      venueShort: "EXAMPLE",
+      title: "Efficient Agents: Building Effective Agents While Reducing Cost",
+      authors: "N Wang, X Hu, P Liu, H Zhu, Y Hou, H Huang, S Zhang, J Yang, J Liu, et al.",
+      venue: "arxiv:2508.02694",
+      venueShort: "arxiv",
       highlight: "",
       tags: ["VLM"],
-      image: "figures/photo.jpg",   // 160×100 thumbnail; replace with paper figure
+      image: "figures/papers/efficient_agents.png",   // 160×100 thumbnail; replace with paper figure
       links: [
-        { label: "ARXIV", url: "#" },
-        { label: "CODE", url: "#" },
+        { label: "ARXIV", url: "https://arxiv.org/abs/2508.02694" },
+        { label: "CODE", url: "" },
       ],
     },
     // To add more papers, copy the block above and fill in your data.
@@ -88,7 +87,6 @@ const siteData = {
     //   ],
     // },
   ],
-
   footer: {
     text: "© 2026 Ningning Wang. Hosted by GitHub Pages.",
   },
