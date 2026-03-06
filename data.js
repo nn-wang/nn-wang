@@ -55,7 +55,8 @@ const siteData = {
 
   news: [
     // Add news items here. Example:
-    // { date: "Mar 2026", content: "My personal academic homepage is online!" },
+    { date: "December 2025", content: "Admitted to USTC Master's Program(expect 26 Fall)!" },
+
   ],
 
   publications: [
